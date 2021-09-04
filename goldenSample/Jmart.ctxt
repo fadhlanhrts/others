@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Jmart
+comment0.text=\n\ Write\ a\ description\ of\ class\ Jmart\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=Jmart()
+comment2.params=args
+comment2.target=void\ main(java.lang.String[])
+comment3.params=
+comment3.target=int\ getPromo()
+comment4.params=
+comment4.target=java.lang.String\ getCustomer()
+comment5.params=before\ after
+comment5.target=float\ getDiscount(int,\ int)
+numComments=6
