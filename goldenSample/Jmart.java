@@ -8,8 +8,6 @@ package goldenSample;
  */
 class Jmart
 {
-    private Jmart() {}
-    
     public static void main (String[] args)
     {
     }

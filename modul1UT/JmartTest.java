@@ -3,6 +3,7 @@ package modul1UT;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import com.Reflector.*;
 import com.NetlabUT.*;
@@ -120,6 +121,7 @@ public class JmartTest extends ReflectorUnitTest implements MonoPackageTester<Jm
 	public void obtainPackage(String packageName)
 	{
 		this.Jmart                    = new ClassR(packageName, "Jmart");
+		ArrayList<Throwable> throwableList = Jmart.getThrowableList();
 		this.main                     = Jmart.getDeclaredMethod("main", String[].class);
 		this.getPromo                 = Jmart.getDeclaredMethod("getPromo");
 		this.getCustomer              = Jmart.getDeclaredMethod("getCustomer");
