@@ -4,7 +4,7 @@
   router="FAN">  
   <class id="1" language="java" name="goldenSample.Jmart" project="Jmart" file="/Jmart/goldenSample/Jmart.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="153" y="130"/>    
+    <position height="-1" width="-1" x="370" y="157"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="false" protected="true" private="true" static="true"/>      

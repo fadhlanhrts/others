@@ -1,28 +1,25 @@
 package goldenSample;
 
-public class Product {
+public class Product
+{
+    private static int idCounter = 0;
 
+    public final int id;
+    public String name;
+    public int weight;
+    public boolean conditionUsed;
     public ItemCategory itemCategory;
     public PriceTag priceTag;
-    public String name;
+    public ProductRating rating;
 
-    private static int productCount = 0;
-
-    public Product(String name, PriceTag priceTag, ItemCategory itemCategory)
+    public Product(String name, int weight, boolean conditionUsed, ItemCategory itemCategory, PriceTag priceTag)
     {
+        this.id = idCounter++;
         this.name = name;
+        this.weight = weight;
+        this.conditionUsed = conditionUsed;
         this.priceTag = priceTag;
         this.itemCategory = itemCategory;
-        productCount++;
+        this.rating = new ProductRating();
     }
-
-    public Product(Product product)
-    {
-        this.name = product.name;
-        this.priceTag = product.priceTag;
-        this.itemCategory = product.itemCategory;
-        productCount++;
-    }
-
-    public static int getProductCount(){return productCount;}
 }

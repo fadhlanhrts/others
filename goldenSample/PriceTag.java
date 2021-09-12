@@ -13,16 +13,16 @@ class PriceTag
     public float discount;
     public float price;
 
-    public PriceTag(float price, float discount)
-    {
-        this.price = price;
-        this.discount = discount;
-    }
-
     public PriceTag(float price)
     {
         this.price = price;
         this.discount = 0.0f;
+    }
+
+    public PriceTag(float price, float discount)
+    {
+        this.price = price;
+        this.discount = discount;
     }
 
     public float getAdjustedPrice()
