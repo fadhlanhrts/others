@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import com.Reflector.*;
 import com.NetlabUT.*;
 
-public class ItemCategoryTest extends ReflectorUnitTest implements MonoPackageTester<ItemCategoryTest> 
+public class ProductCategoryTest extends ReflectorUnitTest implements MonoPackageTester<ProductCategoryTest> 
 {
     ClassR ItemCategory;
     ArrayList<Field> ConstantList = new ArrayList<Field>();
 
     @Override
-    public ItemCategoryTest newInstance() {
-        return new ItemCategoryTest();
+    public ProductCategoryTest newInstance() {
+        return new ProductCategoryTest();
     }
 
     @Override
     public void obtainPackage(String arg0) {
-        this.ItemCategory = new ClassR(arg0, "ItemCategory");
+        this.ItemCategory = new ClassR(arg0, "ProductCategory");
         ConstantList.add(ItemCategory.getDeclaredField("BOOK"));
         ConstantList.add(ItemCategory.getDeclaredField("KITCHEN"));
         ConstantList.add(ItemCategory.getDeclaredField("ELECTRONIC"));

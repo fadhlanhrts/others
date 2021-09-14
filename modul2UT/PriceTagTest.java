@@ -14,6 +14,8 @@ public class PriceTagTest extends ReflectorUnitTest implements MonoPackageTester
     ClassR PriceTag;
 
     Field COMMISSION_MULTIPLIER;
+    Field BOTTOM_PRICE;
+    Field BOTTOM_FEE;
     Field discount;
     Field price;
 
@@ -22,12 +24,7 @@ public class PriceTagTest extends ReflectorUnitTest implements MonoPackageTester
 
     Method getAdjustedPrice;
     Method getAdminFee;
-
-    private void setAccessible(AccessibleObject object)
-    {
-        if (object != null)
-            object.setAccessible(true);
-    }
+    Method getDiscountedPrice;
 
     protected void assumeModifier(ReflectorModifier modifier, Method method)
 	{
@@ -69,23 +66,30 @@ public class PriceTagTest extends ReflectorUnitTest implements MonoPackageTester
     public void obtainPackage(String arg0)
     {
         this.PriceTag = new ClassR(arg0, "PriceTag");
+
         this.COMMISSION_MULTIPLIER = PriceTag.getDeclaredField("COMMISSION_MULTIPLIER");
+        this.BOTTOM_FEE = PriceTag.getDeclaredField("BOTTOM_FEE");
+        this.BOTTOM_PRICE = PriceTag.getDeclaredField("BOTTOM_PRICE");
         this.discount = PriceTag.getDeclaredField("discount");
         this.price = PriceTag.getDeclaredField("price");
 
-        this.ctor1 = PriceTag.getConstructor(float.class);
-        this.ctor2 = PriceTag.getConstructor(float.class, float.class);
+        this.ctor1 = PriceTag.getDeclaredConstructor(double.class);
+        this.ctor2 = PriceTag.getDeclaredConstructor(double.class, double.class);
 
-        this.getAdjustedPrice = PriceTag.getMethod("getAdjustedPrice");
-        this.getAdminFee = PriceTag.getMethod("getAdminFee");
+        this.getAdjustedPrice = PriceTag.getDeclaredMethod("getAdjustedPrice");
+        this.getAdminFee = PriceTag.getDeclaredMethod("getAdminFee");
+        this.getDiscountedPrice = PriceTag.getDeclaredMethod("getDiscountedPrice");
 
-        setAccessible(COMMISSION_MULTIPLIER);
-        setAccessible(discount);
-        setAccessible(price);
-        setAccessible(ctor1);
-        setAccessible(ctor2);
-        setAccessible(getAdjustedPrice);
-        setAccessible(getAdminFee);
+        Helper.setAccessible(COMMISSION_MULTIPLIER);
+        Helper.setAccessible(BOTTOM_FEE);
+        Helper.setAccessible(BOTTOM_PRICE);
+        Helper.setAccessible(discount);
+        Helper.setAccessible(price);
+        Helper.setAccessible(ctor1);
+        Helper.setAccessible(ctor2);
+        Helper.setAccessible(getAdjustedPrice);
+        Helper.setAccessible(getAdminFee);
+        Helper.setAccessible(getDiscountedPrice);
     }
 
     @Override
@@ -93,18 +97,110 @@ public class PriceTagTest extends ReflectorUnitTest implements MonoPackageTester
     {
         assumeModifier(ReflectorModifier.PUBLIC, COMMISSION_MULTIPLIER);
         assumeModifier(ReflectorModifier.STATIC, COMMISSION_MULTIPLIER);
-        assumeModifier(ReflectorModifier.FINAL, COMMISSION_MULTIPLIER);
+        assumeModifier(ReflectorModifier.FINAL,  COMMISSION_MULTIPLIER);
+        assumeModifier(ReflectorModifier.PUBLIC, BOTTOM_FEE);
+        assumeModifier(ReflectorModifier.STATIC, BOTTOM_FEE);
+        assumeModifier(ReflectorModifier.FINAL,  BOTTOM_FEE);
+        assumeModifier(ReflectorModifier.PUBLIC, BOTTOM_PRICE);
+        assumeModifier(ReflectorModifier.STATIC, BOTTOM_PRICE);
+        assumeModifier(ReflectorModifier.FINAL,  BOTTOM_PRICE);
         assumeModifier(ReflectorModifier.PUBLIC, discount);
         assumeModifier(ReflectorModifier.PUBLIC, price);
 
-        assumeReturnType(float.class, getAdjustedPrice);
-        assumeReturnType(float.class, getAdminFee);
+        assumeModifier(ReflectorModifier.PUBLIC, ctor1);
+        assumeModifier(ReflectorModifier.PUBLIC, ctor2);
+
+        assumeModifier(ReflectorModifier.PUBLIC, getAdminFee);
+        assumeModifier(ReflectorModifier.PUBLIC, getAdjustedPrice);
+        assumeModifier(ReflectorModifier.PRIVATE, getDiscountedPrice);
+
+        assumeReturnType(double.class, getAdjustedPrice);
+        assumeReturnType(double.class, getAdminFee);
+        assumeReturnType(double.class, getDiscountedPrice);
 
         Object get = null;
         try { get = PriceTag.getBypassInstantiation(); }
         catch (Throwable ignored) {}
-
         final Object bypass = get;
-        assumeEquals(0.05f, () -> COMMISSION_MULTIPLIER.get(bypass));
+        
+        assumeEquals(0.05, () -> COMMISSION_MULTIPLIER.get(bypass));
+        assumeEquals(20000.0, () -> BOTTOM_PRICE.get(bypass));
+        assumeEquals(1000.0, () -> BOTTOM_FEE.get(bypass));
+
+        {
+            Object o = PriceTag.newInstance(ctor1, 9.5);
+            assumeEquals(9.5, () -> price.get(o));
+            assumeEquals(0.0, () -> discount.get(o));
+        }
+
+        {
+            Object o = PriceTag.newInstance(ctor2, 11.0, 9.0);
+            assumeEquals(11.0, () -> price.get(o));
+            assumeEquals(9.0, () -> discount.get(o));
+        }
+
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 5000);
+            discount.set(bypass, 0);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(5000.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(6000.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 0);
+            discount.set(bypass, 0);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(0.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 0);
+            discount.set(bypass, 10);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(0.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 5000);
+            discount.set(bypass, 10);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(4500.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(5500.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 20000);
+            discount.set(bypass, 0);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(20000.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(21000.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 25000);
+            discount.set(bypass, 50);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(12500.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(13500.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1350.0, () -> {
+            price.set(bypass, 30000);
+            discount.set(bypass, 10);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(27000.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(28350.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 30000);
+            discount.set(bypass, 100);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(0.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> getAdjustedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> {
+            price.set(bypass, 30000);
+            discount.set(bypass, 2000);
+            return getAdminFee.invoke(bypass);
+        });
+        assumeEquals(0.0, () -> getDiscountedPrice.invoke(bypass));
+        assumeEquals(1000.0, () -> getAdjustedPrice.invoke(bypass));
     }
 }
