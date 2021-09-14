@@ -3,7 +3,7 @@
   realizations="false" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="goldenSample.PriceTag" project="Jmart" file="/Jmart/goldenSample/PriceTag.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="261" y="299"/>    
+    <position height="-1" width="-1" x="328" y="109"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="goldenSample.Product" project="Jmart" file="/Jmart/goldenSample/Product.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="298" y="117"/>    
+    <position height="-1" width="-1" x="369" y="316"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,31 +21,31 @@
   </class>  
   <class id="3" language="java" name="goldenSample.ProductRating" project="Jmart" 
     file="/Jmart/goldenSample/ProductRating.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="86" y="203"/>    
+    <position height="-1" width="-1" x="508" y="129"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="4" language="java" name="goldenSample.ItemCategory" project="Jmart" 
-    file="/Jmart/goldenSample/ItemCategory.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="536" y="220"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="5" language="java" name="goldenSample.Jmart" project="Jmart" file="/Jmart/goldenSample/Jmart.java" 
+  <class id="4" language="java" name="goldenSample.Jmart" project="Jmart" file="/Jmart/goldenSample/Jmart.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="81" y="57"/>    
+    <position height="-1" width="-1" x="576" y="258"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="false" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <enumeration id="5" language="java" name="goldenSample.ProductCategory" project="Jmart" 
+    file="/Jmart/goldenSample/ProductCategory.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="109" y="213"/>    
+    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
   <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

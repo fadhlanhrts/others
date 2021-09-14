@@ -8,32 +8,42 @@ package goldenSample;
  */
 class PriceTag
 {
-    public static final float COMMISSION_MULTIPLIER = 0.05f;
+    public static final double COMMISSION_MULTIPLIER = 0.05;
+    public static final double BOTTOM_PRICE = 20000.0;
+    public static final double BOTTOM_FEE   = 1000.0;
 
-    public float discount;
-    public float price;
+    public double discount;
+    public double price;
 
-    public PriceTag(float price)
+    public PriceTag(double price)
     {
         this.price = price;
-        this.discount = 0.0f;
+        this.discount = 0.0;
     }
 
-    public PriceTag(float price, float discount)
+    public PriceTag(double price, double discount)
     {
         this.price = price;
         this.discount = discount;
     }
 
-    public float getAdjustedPrice()
+    public double getAdjustedPrice()
     {
-        if (discount >= 100.0f) return getAdminFee();
-        float cut = price * discount / 100.0f;
-        return price - cut + getAdminFee(); 
+        return getDiscountedPrice() + getAdminFee();
     }
 
-    public float getAdminFee()
+    public double getAdminFee()
     {
-        return COMMISSION_MULTIPLIER * price;
+        double discountedPrice = getDiscountedPrice();
+        if (discountedPrice < BOTTOM_PRICE)
+            return BOTTOM_FEE;
+        return COMMISSION_MULTIPLIER * discountedPrice;
+    }
+
+    private double getDiscountedPrice()
+    {
+        if (discount >= 100.0) return 0.0;
+        double cut = price * discount / 100.0;
+        return price - cut; 
     }
 }

@@ -1,6 +1,6 @@
 package goldenSample;
 
-public enum ItemCategory
+public enum ProductCategory
 {
     BOOK,
     KITCHEN,
