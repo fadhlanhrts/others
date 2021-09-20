@@ -1,32 +1,52 @@
 package goldenSample;
 
-public class Coupon {
-    public String name;
-    public int code;
-    public double cut;
-    public Type type;
-    public double limit;
+public class Coupon 
+{
+    public final String name;
+    public final int code;
+    public final double cut;
+    public final Type type;
+    public final double minimum;
+    private boolean used;
 
-    public enum Type{
-        Discount,
-        Rebate
+    public enum Type
+    {
+        DISCOUNT,
+        REBATE
     }
 
-    public Coupon(String name, int code, double cut, Type type, double limit){
+    public Coupon(String name, int code, Type type, double cut, double minimum)
+    {
         this.name = name;
         this.code = code;
         this.cut = cut;
         this.type = type;
-        this.limit = limit;
+        this.minimum = minimum;
+        this.used = false;
+    }
+    
+    public boolean isUsed() { return used; }
+
+    public boolean canApply(PriceTag priceTag)
+    {
+        if (used || priceTag.getAdjustedPrice() < minimum)
+            return false;
+        return true;
     }
 
-    public static double apply(PriceTag priceTag, Coupon coupon){
-        if(coupon.type == Type.Rebate){
-            return priceTag.getAdjustedPrice() - coupon.cut;
-        } else
+    public double apply(PriceTag priceTag)
+    {
+        used = true;
+        double adjustedPrice = priceTag.getAdjustedPrice();
+        switch (type)
         {
-            return priceTag.getAdjustedPrice() * coupon.cut;
+            case REBATE:
+                if (adjustedPrice >= cut) return 0.0;
+                return adjustedPrice - cut;
+            case DISCOUNT:
+                if (cut >= 100.0) return 0.0;
+                return adjustedPrice - adjustedPrice * cut;
         }
+        return 0.0;
     }
-
 }
