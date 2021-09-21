@@ -41,11 +41,11 @@ public class Coupon
         switch (type)
         {
             case REBATE:
-                if (adjustedPrice >= cut) return 0.0;
+                if (adjustedPrice <= cut) return 0.0;
                 return adjustedPrice - cut;
             case DISCOUNT:
                 if (cut >= 100.0) return 0.0;
-                return adjustedPrice - adjustedPrice * cut;
+                return adjustedPrice - adjustedPrice * (cut / 100);
         }
         return 0.0;
     }

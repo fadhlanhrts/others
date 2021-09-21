@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.Reflector.*;
 import com.NetlabUT.*;
+import unithelper.*;
 
 public class ProductTest extends ReflectorUnitTest implements MonoPackageTester<ProductTest> 
 {

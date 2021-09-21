@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import com.Reflector.*;
 import com.NetlabUT.*;
 
+import unithelper.*;
+
 public class PriceTagTest extends ReflectorUnitTest implements MonoPackageTester<PriceTagTest> 
 {
     ClassR PriceTag;

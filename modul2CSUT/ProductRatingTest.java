@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import com.Reflector.*;
 import com.NetlabUT.*;
 
+import unithelper.*;
+
 public class ProductRatingTest extends ReflectorUnitTest implements MonoPackageTester<ProductRatingTest> 
 {
     ClassR ProductRating;
