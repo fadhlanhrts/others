@@ -1,4 +1,4 @@
-package modul2UT;
+package modul2CSUT;
 
 import com.Reflector.ClassR;
 import com.Reflector.MonoPackageTester;
