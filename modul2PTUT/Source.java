@@ -6,7 +6,7 @@ public class Source
 {
     public static void main(String[] args)
     {
-        PackageRunner runner = new PackageRunner("Modul 2 - CS");
+        PackageRunner runner = new PackageRunner("Modul 2 - PT");
         runner.add(new JmartTest());
         runner.add(new ShipmentDurationTest());
         runner.add(new CouponTest());

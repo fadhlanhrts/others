@@ -21,8 +21,10 @@ public class JmartTest extends ReflectorUnitTest implements MonoPackageTester<Jm
         assumeModifier(ReflectorModifier.PUBLIC, createProduct);
         assumeModifier(ReflectorModifier.STATIC, createProduct);
 
+        /* bonus karena di UML typo, seharusnya createCoupon tetapi aslinya createCoupun
         assumeModifier(ReflectorModifier.PUBLIC, createCoupon);
         assumeModifier(ReflectorModifier.STATIC, createCoupon);
+         */
 
         assumeModifier(ReflectorModifier.PUBLIC, createShipmentDuration);
         assumeModifier(ReflectorModifier.STATIC, createShipmentDuration);
