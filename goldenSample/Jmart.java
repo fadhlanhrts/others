@@ -1,5 +1,7 @@
 package goldenSample;
 
+import goldenSample.Transaction.*;
+import com.google.gson.*;
 /**
  * Write a description of class Jmart here.
  *
@@ -10,20 +12,15 @@ class Jmart
 {
     public static void main (String[] args)
     {
-    }
+        Payment p = new Payment(
+            0,
+            1,
+            2,
+            3,
+            new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.REGULER)
+        );
 
-    public static Product createProduct()
-    {
-        return new Product("Item", 0, false, new PriceTag(100.0), ProductCategory.BOOK);
-    }
-
-    public static Coupon createCoupon()
-    {
-        return new Coupon("My Coupon", 21312, Coupon.Type.REBATE, 10000, 50000);
-    }
-
-    public static ShipmentDuration createShipmentDuration()
-    {
-        return new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.KARGO);
+        Gson gson = new Gson();
+        System.out.println(gson.toJson(p));
     }
 }

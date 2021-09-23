@@ -1,20 +1,19 @@
 package goldenSample;
 
-public class Product
+public class Product extends Recognizable
 {
-    private static int idCounter = 0;
-
-    public final int id;
     public String name;
     public int weight;
     public boolean conditionUsed;
     public PriceTag priceTag;
     public ProductCategory category;
     public ProductRating rating;
+    public Store store;
 
-    public Product(String name, int weight, boolean conditionUsed,  PriceTag priceTag, ProductCategory category)
+    public Product(int id, Store store, String name, int weight, boolean conditionUsed,  PriceTag priceTag, ProductCategory category)
     {
-        this.id = idCounter++;
+        super(id);
+        this.store = store;
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;

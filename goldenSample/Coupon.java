@@ -1,6 +1,6 @@
 package goldenSample;
 
-public class Coupon 
+public class Coupon extends Recognizable
 {
     public final String name;
     public final int code;
@@ -15,8 +15,9 @@ public class Coupon
         REBATE
     }
 
-    public Coupon(String name, int code, Type type, double cut, double minimum)
+    public Coupon(int id, String name, int code, Type type, double cut, double minimum)
     {
+        super(id);
         this.name = name;
         this.code = code;
         this.cut = cut;
