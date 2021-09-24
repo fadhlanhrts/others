@@ -1,6 +1,6 @@
 package goldenSample;
 
-public class Recognizable
+public abstract class Recognizable
 {
     public final int id;
     protected Recognizable(int id) { this.id = id; }
