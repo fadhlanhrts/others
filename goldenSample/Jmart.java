@@ -1,7 +1,6 @@
 package goldenSample;
 
 import goldenSample.Transaction.*;
-import com.google.gson.*;
 /**
  * Write a description of class Jmart here.
  *
@@ -19,8 +18,5 @@ class Jmart
             3,
             new ShipmentDuration(ShipmentDuration.INSTANT, ShipmentDuration.REGULER)
         );
-
-        Gson gson = new Gson();
-        System.out.println(gson.toJson(p));
     }
 }

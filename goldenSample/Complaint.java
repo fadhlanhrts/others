@@ -17,4 +17,14 @@ public class Complaint extends Transaction
         this.paymentId = paymentId;
         this.desc = desc;
     }
+
+    @Override
+    public boolean validate() {
+        return false;
+    }
+
+    @Override
+    public Transaction perform() {
+        return null;
+    }
 }
