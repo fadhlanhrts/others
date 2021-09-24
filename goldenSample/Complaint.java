@@ -13,7 +13,7 @@ public class Complaint extends Transaction
     }
     public Complaint(int id, int buyerId, int storeId, int paymentId, String desc)
     {
-        super(id, buyerId, paymentId);
+        super(id, buyerId, storeId);
         this.paymentId = paymentId;
         this.desc = desc;
     }
