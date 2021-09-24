@@ -1,4 +1,4 @@
-package goldenSample.Transaction;
+package goldenSample;
 
 public class Complaint extends Transaction
 {

@@ -1,10 +1,6 @@
-package goldenSample.Transaction;
+package goldenSample;
 
-import goldenSample.Account;
-import goldenSample.Recognizable;
-import goldenSample.Store;
-
-public class Transaction extends Recognizable
+public abstract class Transaction extends Recognizable implements TransactionInterface
 {
     public enum Rating { NONE, BAD, NEUTRAL, GOOD };
 

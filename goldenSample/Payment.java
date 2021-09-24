@@ -1,7 +1,4 @@
-package goldenSample.Transaction;
-
-import goldenSample.Product;
-import goldenSample.ShipmentDuration;
+package goldenSample;
 
 public class Payment extends Transaction
 {
@@ -19,5 +16,15 @@ public class Payment extends Transaction
         super(id, buyerId, storeId);
         this.productId = productId;
         this.shipmentDuration = shipmentDuration;
+    }
+    @Override
+    public boolean validate() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+    @Override
+    public Transaction perform() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }
