@@ -1,6 +1,6 @@
 package goldenSample;
 
-public class ProductRating
+public class ProductRating implements FileParser
 {
     private long total;
     private long count;
@@ -27,5 +27,11 @@ public class ProductRating
     public long getTotal()
     {
         return total;
+    }
+
+    @Override
+    public boolean read(String content) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

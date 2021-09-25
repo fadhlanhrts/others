@@ -1,6 +1,6 @@
 package goldenSample;
 
-public class Coupon extends Recognizable
+public class Coupon extends Recognizable implements FileParser
 {
     public final String name;
     public final int code;
@@ -49,5 +49,11 @@ public class Coupon extends Recognizable
                 return adjustedPrice - adjustedPrice * (cut / 100);
         }
         return 0.0;
+    }
+
+    @Override
+    public boolean read(String content) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

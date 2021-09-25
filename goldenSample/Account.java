@@ -1,10 +1,10 @@
 package goldenSample;
 
-public class Account extends Recognizable
+public class Account extends Recognizable implements FileParser
 {
-    public final String name;
-    public final String email;
-    public final String password;
+    public String name;
+    public String email;
+    public String password;
 
     public Account(int id, String name, String email, String password)
     {
@@ -12,5 +12,11 @@ public class Account extends Recognizable
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    @Override
+    public boolean read(String content) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

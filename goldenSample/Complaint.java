@@ -1,9 +1,9 @@
 package goldenSample;
 
-public class Complaint extends Transaction
+public class Complaint extends Transaction implements FileParser
 {
-    public final int paymentId;
-    public final String desc;
+    public int paymentId;
+    public String desc;
 
     public Complaint(int id, Payment payment, String desc)
     {
@@ -26,5 +26,11 @@ public class Complaint extends Transaction
     @Override
     public Transaction perform() {
         return null;
+    }
+    
+    @Override
+    public boolean read(String content) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

@@ -1,6 +1,6 @@
 package goldenSample;
 
-public class ShipmentDuration
+public class ShipmentDuration implements FileParser
 {
     public static final ShipmentDuration INSTANT  = new ShipmentDuration((byte) (1 << 0));
     public static final ShipmentDuration SAME_DAY = new ShipmentDuration((byte) (1 << 1));
@@ -20,4 +20,10 @@ public class ShipmentDuration
     }
 
     public boolean isDuration(ShipmentDuration reference) { return (bit & reference.bit) != 0; }
+    
+    @Override
+    public boolean read(String content) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

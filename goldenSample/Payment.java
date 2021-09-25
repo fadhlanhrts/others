@@ -1,13 +1,13 @@
 package goldenSample;
 
-public class Payment extends Transaction
+public class Payment extends Transaction implements FileParser
 {
-    public final int productId;
-    public final ShipmentDuration shipmentDuration;
+    public int productId;
+    public ShipmentDuration shipmentDuration;
 
     public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration)
     {
-        super(id, buyerId, product.store.id);
+        super(id, buyerId, product.storeId);
         this.productId = product.id;
         this.shipmentDuration = shipmentDuration;
     }
@@ -26,5 +26,10 @@ public class Payment extends Transaction
     public Transaction perform() {
         // TODO Auto-generated method stub
         return null;
+    }
+    @Override
+    public boolean read(String content) {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

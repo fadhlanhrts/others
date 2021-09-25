@@ -1,12 +1,12 @@
 package goldenSample;
 
-public abstract class Transaction extends Recognizable implements TransactionInterface
+public abstract class Transaction extends Recognizable
 {
     public enum Rating { NONE, BAD, NEUTRAL, GOOD };
 
-    public final String time = "Time"; // modul 4 ganti nih jadi auto generate time
-    public final int buyerId;
-    public final int storeId;
+    public String time = "Time"; // modul 4 ganti nih jadi auto generate time
+    public int buyerId;
+    public int storeId;
     public Rating rating = Rating.NONE;
     
     protected Transaction(int id, int buyerId, int storeId)
@@ -21,4 +21,6 @@ public abstract class Transaction extends Recognizable implements TransactionInt
         this.buyerId = buyer.id;
         this.storeId = store.id;
     }
+    public abstract boolean validate();
+    public abstract Transaction perform();
 }
