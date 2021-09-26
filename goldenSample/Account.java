@@ -19,4 +19,11 @@ public class Account extends Recognizable implements FileParser
         // TODO Auto-generated method stub
         return false;
     }
+
+    public String toString()
+    {
+        return "name: " + name +
+                "\nemail: " + email +
+                "\npassword: "  + password;
+    }
 }

@@ -2,28 +2,23 @@ package goldenSample;
 
 public class Payment extends Transaction implements FileParser
 {
-    public int productId;
-    public ShipmentDuration shipmentDuration;
 
-    public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration)
+    public Payment(int invoiceId, int productId, int buyerId, int productCount, Shipment shipment)
     {
-        super(id, buyerId, product.storeId);
-        this.productId = product.id;
-        this.shipmentDuration = shipmentDuration;
+        super(invoiceId, productId, buyerId, productCount, shipment);
     }
-    public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration)
+    public Payment(int invoiceId, Product product, int buyerId, int productCount, Shipment shipment)
     {
-        super(id, buyerId, storeId);
-        this.productId = productId;
-        this.shipmentDuration = shipmentDuration;
+        super(invoiceId, product.id, buyerId, productCount, shipment);
     }
+
     @Override
     public boolean validate() {
         // TODO Auto-generated method stub
         return false;
     }
     @Override
-    public Transaction perform() {
+    public Invoice perform() {
         // TODO Auto-generated method stub
         return null;
     }

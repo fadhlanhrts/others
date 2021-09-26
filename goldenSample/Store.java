@@ -27,4 +27,11 @@ public class Store extends Recognizable implements FileParser
         // TODO Auto-generated method stub
         return false;
     }
+
+    public String toString()
+    {
+        return "name: "+ name +
+                "\naddress: " + address +
+                "\nphoneNumber: " + phoneNumber;
+    }
 }

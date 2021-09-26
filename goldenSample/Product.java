@@ -40,4 +40,17 @@ public class Product extends Recognizable implements FileParser
         // TODO Auto-generated method stub
         return false;
     }
+
+    public String toString()
+    {
+        return "Name: " + name +
+                "\nWeight: " + weight +
+                "\nconditionUsed: " + conditionUsed +
+                "\npriceTag: " + priceTag.getAdjustedPrice() +
+                "\ncategory: " + category.toString() +
+                "\nrating: " + rating.toString() +
+                "\nstoreId: "+ storeId;
+
+
+    }
 }

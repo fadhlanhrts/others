@@ -1,33 +1,17 @@
 package goldenSample;
 
-public class Complaint extends Transaction implements FileParser
+public class Complaint implements FileParser
 {
-    public int paymentId;
+
+    public Invoice invoice;
     public String desc;
 
-    public Complaint(int id, Payment payment, String desc)
+    public Complaint(Invoice invoice,String desc)
     {
-        super(id, payment.buyerId, payment.storeId);
-        this.paymentId = payment.id;
-        this.desc = desc;
-    }
-    public Complaint(int id, int buyerId, int storeId, int paymentId, String desc)
-    {
-        super(id, buyerId, storeId);
-        this.paymentId = paymentId;
+        this.invoice = invoice;
         this.desc = desc;
     }
 
-    @Override
-    public boolean validate() {
-        return false;
-    }
-
-    @Override
-    public Transaction perform() {
-        return null;
-    }
-    
     @Override
     public boolean read(String content) {
         // TODO Auto-generated method stub
