@@ -1,15 +1,15 @@
 package goldenSample;
 
-public class Complaint implements FileParser
+public class Complaint extends Recognizable implements FileParser
 {
-
-    public Invoice invoice;
+    public final String date;
     public String desc;
 
-    public Complaint(Invoice invoice,String desc)
+    public Complaint(int id, String desc)
     {
-        this.invoice = invoice;
+        super(id);
         this.desc = desc;
+        date = "Date";
     }
 
     @Override

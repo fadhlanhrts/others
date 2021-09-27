@@ -1,6 +1,4 @@
 package goldenSample;
-
-import goldenSample.Transaction.*;
 /**
  * Write a description of class Jmart here.
  *
@@ -11,6 +9,5 @@ class Jmart
 {
     public static void main (String[] args)
     {
-
     }
 }

@@ -19,16 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="goldenSample.Transaction" project="Jmart" 
-    file="/Jmart/goldenSample/Transaction.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="719" y="313"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="4" language="java" name="goldenSample.Account" project="Jmart" file="/Jmart/goldenSample/Account.java" 
+  <class id="3" language="java" name="goldenSample.Account" project="Jmart" file="/Jmart/goldenSample/Account.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="273" y="100"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -37,16 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="5" language="java" name="goldenSample.Transaction.Rating" project="Jmart" 
-    file="/Jmart/goldenSample/Transaction.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="718" y="477"/>    
-    <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="false" package="false" protected="false" private="false" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="6" language="java" name="goldenSample.Store" project="Jmart" file="/Jmart/goldenSample/Store.java" 
+  <class id="4" language="java" name="goldenSample.Store" project="Jmart" file="/Jmart/goldenSample/Store.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="499" y="283"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -55,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="goldenSample.Payment" project="Jmart" file="/Jmart/goldenSample/Payment.java" 
+  <class id="5" language="java" name="goldenSample.Payment" project="Jmart" file="/Jmart/goldenSample/Payment.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="969" y="311"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -64,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="8" language="java" name="goldenSample.Coupon.Type" project="Jmart" 
+  <enumeration id="6" language="java" name="goldenSample.Coupon.Type" project="Jmart" 
     file="/Jmart/goldenSample/Coupon.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="970" y="102"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -73,7 +55,7 @@
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="9" language="java" name="goldenSample.Product" project="Jmart" file="/Jmart/goldenSample/Product.java" 
+  <class id="7" language="java" name="goldenSample.Product" project="Jmart" file="/Jmart/goldenSample/Product.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="201" y="285"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -82,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="goldenSample.Coupon" project="Jmart" file="/Jmart/goldenSample/Coupon.java" 
+  <class id="8" language="java" name="goldenSample.Coupon" project="Jmart" file="/Jmart/goldenSample/Coupon.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="752" y="101"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -91,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="11" language="java" name="goldenSample.FileParser" project="Jmart" 
+  <interface id="9" language="java" name="goldenSample.FileParser" project="Jmart" 
     file="/Jmart/goldenSample/FileParser.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="88" y="86"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
@@ -100,40 +82,24 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
+  <generalization id="10">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <nesting id="11">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="6"/>  
+  </nesting>  
   <generalization id="12">    
-    <end type="SOURCE" refId="10"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <generalization id="13">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <nesting id="14">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="8"/>  
-  </nesting>  
-  <generalization id="15">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
-  <generalization id="16">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="1"/>  
-  </generalization>  
-  <generalization id="17">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <generalization id="18">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </generalization>  
-  <nesting id="19">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </nesting>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="6"/>    
+  <generalization id="14">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 

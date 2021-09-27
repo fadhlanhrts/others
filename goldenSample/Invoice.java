@@ -1,25 +1,33 @@
 package goldenSample;
 
-public class Invoice extends Recognizable
+public abstract class Invoice extends Recognizable implements FileParser
 {
-    public int productId;
-    public int productCount;
+    public enum Status { WAITING_CONFIRMATION, CANCELLED, ON_PROGRESS, ON_DELIVERY, COMPLAINT, FINISHED, FAILED }
+    public enum Rating { NONE, BAD, NEUTRAL, GOOD }
+
+    public final String date; // Modul 4 ganti jadi Date
     public int buyerId;
-    public Shipment shipment;
-    protected String invoiceStatus;
-    public String date; // Modul 4 ganti jadi Date
+    public int productId;
+    public int complaintId;
+    public Rating rating;
+    public Status status;
 
-    public Invoice(int invoiceId, int productId, int buyerId, int productCount, Shipment shipment)
+    protected Invoice(int id, int buyerId, int productId)
     {
-        super(invoiceId);
-        this.productId = productId;
+        super(id);
         this.buyerId = buyerId;
-        this.productCount = productCount;
-        this.shipment = shipment;
+        this.productId = productId;
+        this.complaintId = -1;
+        this.date = "Date";
+        this.rating = Rating.NONE;
+        this.status = Status.WAITING_CONFIRMATION;
     }
 
-    public String getInvoiceStatus()
-    {
-        return invoiceStatus;
+    @Override
+    public boolean read(String content) {
+        // TODO Auto-generated method stub
+        return false;
     }
+
+    public abstract double getTotalPay();
 }
