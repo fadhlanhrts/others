@@ -1,6 +1,6 @@
 package goldenSample;
 
-public class Payment extends Invoice implements Conductor
+public class Payment extends Invoice implements Transactor
 {
     public Shipment shipment;
     public int productCount;

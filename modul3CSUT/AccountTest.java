@@ -23,9 +23,6 @@ public class AccountTest extends ReflectorUnitTest implements MonoPackageTester<
         assumeModifier(ReflectorModifier.PUBLIC, name);
         assumeModifier(ReflectorModifier.PUBLIC, email);
         assumeModifier(ReflectorModifier.PUBLIC, password);
-        assumeModifier(ReflectorModifier.PUBLIC, read);
-
-        assumeEquals(boolean.class, () -> read.getReturnType());
 
         assumeEquals("FileParser", () -> {
             return Account.getContainingClass().getInterfaces()[0].getSimpleName();

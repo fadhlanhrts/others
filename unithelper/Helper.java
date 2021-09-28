@@ -45,4 +45,11 @@ public class Helper
             method.setAccessible(true);
         return method;
     }
+    public static Field getField(ClassR classR, String name)
+    {
+        Field field = classR.getField(name);
+        if (makeAccessible && field != null)
+            field.setAccessible(true);
+        return field;
+    }
 }
