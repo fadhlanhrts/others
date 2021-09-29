@@ -30,7 +30,7 @@ public class ProductTest extends ReflectorUnitTest implements MonoPackageTester<
                     ProductCategory.getBypassInstantiation(),
                     MultiDuration.getBypassInstantiation());
             String str = (String) toString.invoke(obj);
-            return  str.contains("1") && str.contains("2") && str.contains("Harry") &&
+            return  str.contains("2") && str.contains("Harry") &&
                     str.contains("3") && str.contains("false");
         });
     }
