@@ -14,7 +14,7 @@ public class Shipment implements FileParser
         private Duration(byte bit) { this.bit = bit; }
     }
 
-    public class MultiDuration
+    public static class MultiDuration
     {
         public final byte bit;
         public MultiDuration(Duration... args) 
