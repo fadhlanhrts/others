@@ -3,7 +3,7 @@ package goldenSample;
 import java.util.ArrayList;
 
 public class Filter {
-    public static ArrayList<PriceTag> filterPriceTag(PriceTag[] list, int value, boolean less) {
+    public static ArrayList<PriceTag> filterPriceTag(PriceTag[] list, double value, boolean less) {
         ArrayList<PriceTag> priceTags = new ArrayList<>();
         for (PriceTag e : list) {
             if (less && e.getAdjustedPrice() < value || !less && e.getAdjustedPrice() >= value)
