@@ -2,10 +2,14 @@ package goldenSample;
 
 import java.util.Date;
 
-public abstract class Invoice extends Recognizable implements FileParser
-{
-    public enum Status { WAITING_CONFIRMATION, CANCELLED, ON_PROGRESS, ON_DELIVERY, COMPLAINT, FINISHED, FAILED }
-    public enum Rating { NONE, BAD, NEUTRAL, GOOD }
+public abstract class Invoice extends Recognizable implements FileParser {
+    public enum Status {
+        WAITING_CONFIRMATION, CANCELLED, ON_PROGRESS, ON_DELIVERY, COMPLAINT, FINISHED, FAILED
+    }
+
+    public enum Rating {
+        NONE, BAD, NEUTRAL, GOOD
+    }
 
     public final Date date;
     public int buyerId;
@@ -14,8 +18,7 @@ public abstract class Invoice extends Recognizable implements FileParser
     public Rating rating;
     public Status status;
 
-    protected Invoice(int id, int buyerId, int productId)
-    {
+    protected Invoice(int id, int buyerId, int productId) {
         super(id);
         this.buyerId = buyerId;
         this.productId = productId;

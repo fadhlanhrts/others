@@ -13,6 +13,9 @@ import goldenSample.Shipment.Duration;
  */
 class Jmart {
     public static void main(String[] args) {
-    	System.out.println(Shipment.Duration.KARGO.getEstimatedArrival(new Date()));
+
+        Complaint c = new Complaint(1, "AADD");
+        System.out.println(c.toString());
+
     }
 }
