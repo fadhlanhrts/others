@@ -1,7 +1,7 @@
 package goldenSample;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import goldenSample.Shipment.Duration;
 
@@ -12,7 +12,7 @@ import goldenSample.Shipment.Duration;
  * @version (a version number or a date)
  */
 class Jmart {
-    public static void main(String[] args) throws ParseException {
-
+    public static void main(String[] args) {
+    	System.out.println(Shipment.Duration.KARGO.getEstimatedArrival(new Date()));
     }
 }

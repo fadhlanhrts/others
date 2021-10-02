@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)--><ajsv>
+    <diagram creationDate="2021-Oct-02 06:55" licenseGrade="single" licenseeName="AgileJ community member" licenseeOrganization="agilej-community" populationMethod="manual" version="1.9.2.v20190518-1152">
+        <filterScript>
+
+hide methods named Filter
+hide field lines
+hide method lines
+
+</filterScript>
+        <class className="goldenSample.Shipment" modelMemberId="goldenSample.Shipment" project="Jmart" xLocation="24" yLocation="561"/>
+        <class className="goldenSample.Store" modelMemberId="goldenSample.Store" project="Jmart" xLocation="23" yLocation="187"/>
+        <class className="goldenSample.Filter" modelMemberId="goldenSample.Filter" project="Jmart" xLocation="20" yLocation="20"/>
+    </diagram>
+</ajsv>
