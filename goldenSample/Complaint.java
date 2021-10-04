@@ -25,8 +25,4 @@ public class Complaint extends Recognizable implements FileParser {
         String strDate = formatter.format(date);
         return "Complaint{" + "date=" + strDate + ", desc='" + desc + '\'' + '}';
     }
-
-    public static void main(String[] args) {
-        System.out.print(new Complaint(0, "sdas").date);
-    }
 }
