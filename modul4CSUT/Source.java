@@ -10,6 +10,7 @@ public class Source {
         runner.add(new ComplaintTest());
         runner.add(new StoreTest());
         runner.add(new ShipmentTest());
+        runner.add(new FilterTest());
         runner.run();
     }
 }
