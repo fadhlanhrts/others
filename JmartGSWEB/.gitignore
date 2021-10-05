@@ -2,6 +2,8 @@
 *.ctxt
 *.iml
 
+.gradle/*
+.settings/*
 .metadata/*
 .idea/*
 GitBatchFetcher/*
