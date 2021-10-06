@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import jmart.goldenSample.*;
 import jmart.goldenSample.dataset.*;
+import jmart.goldenSample.dbjson.JSONTable;
+import jmart.goldenSample.dbjson.Serializable;
 
 public interface BasicGetController<T extends Serializable>
 {
@@ -20,7 +22,7 @@ public interface BasicGetController<T extends Serializable>
     @RequestMapping(value="/{id}", method=RequestMethod.GET)
     public default T getById(@PathVariable int id)
     {
-        final ArrayList<T> table = getJSONTable().table;
+        final ArrayList<T> table = getJSONTable().list;
         return Algorithm.<T>find(table, (e) -> e.id == id);
     }
 }

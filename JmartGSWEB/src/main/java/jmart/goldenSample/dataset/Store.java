@@ -1,5 +1,7 @@
 package jmart.goldenSample.dataset;
 
+import jmart.goldenSample.dbjson.Serializable;
+
 public class Store extends Serializable
 {
     public String name;

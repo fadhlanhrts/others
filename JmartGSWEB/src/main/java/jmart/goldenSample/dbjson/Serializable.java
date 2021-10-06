@@ -1,4 +1,4 @@
-package jmart.goldenSample.dataset;
+package jmart.goldenSample.dbjson;
 
 import java.util.HashMap;
 
@@ -19,7 +19,10 @@ public class Serializable implements Comparable<Serializable>
     {
         return mapCounter.put(clazz, id);
     }
-
+    public static <T extends Serializable> Integer getClosingId(Class<T> clazz)
+    {
+    	return mapCounter.get(clazz);
+    }
     public boolean equals(Object other)
     {
         return other instanceof Serializable && ((Serializable) other).id == id;

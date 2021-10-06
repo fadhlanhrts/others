@@ -1,4 +1,4 @@
-package jmart.goldenSample.controller;
+package jmart.goldenSample.dbjson;
 
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
@@ -12,25 +12,20 @@ public class JSONTable<T>
     private static final Gson gson = new Gson();
 
     public final String filepath;
-    public final ArrayList<T> table;
-
-    private JSONTable(String filepath)
-    {
-        this.filepath = filepath;
-        this.table = new ArrayList<T>();
-    }
+    public final ArrayList<T> list;
     
     @SuppressWarnings("unchecked")
-    public static <T> JSONTable<T> createFromFile(Class<T> clazz, String filepath) throws ClassNotFoundException, FileAlreadyExistsException
+    public JSONTable(Class<T> clazz, String filepath) throws ClassNotFoundException, FileAlreadyExistsException
     {
-        JSONTable<T> instance = new JSONTable<T>(filepath);
+        this.filepath = filepath;
+        this.list = new ArrayList<T>();
         boolean fileNotExists = true;
         try
         {
             Class<T[]> arrayType = (Class<T[]>) Class.forName("[L" + clazz.getName() + ";");
-            T[] loaded = JSONTable.load(arrayType, filepath);
+            T[] loaded = load(arrayType, filepath);
             if (loaded != null)
-                Collections.addAll(instance.table, loaded);
+                Collections.addAll(list, loaded);
         }
         catch (FileNotFoundException e)
         {
@@ -43,13 +38,12 @@ public class JSONTable<T>
         }
         if (!fileNotExists)
             throw new FileAlreadyExistsException(filepath);
-        return instance;
     }
 
     public void write() throws IOException
     {
         final FileWriter writer = new FileWriter(filepath);
-        writer.write(gson.toJson(table));
+        writer.write(gson.toJson(list));
         writer.close();
     }
 

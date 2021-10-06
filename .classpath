@@ -5,7 +5,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path=""/>
+	<classpathentry excluding="JmartGSWEB/|GitBatchFetcher/" kind="src" path=""/>
 	<classpathentry kind="lib" path="lib/NetlabUT.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

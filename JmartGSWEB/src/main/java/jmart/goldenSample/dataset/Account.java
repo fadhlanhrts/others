@@ -3,6 +3,8 @@ package jmart.goldenSample.dataset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import jmart.goldenSample.dbjson.Serializable;
+
 public class Account extends Serializable
 {
     public static final String REGEX_EMAIL       = "(?!.\\.{2,})(?!\\.)[0-9A-z.&~]+@(?!-)[0-9A-z&*~.-]+";

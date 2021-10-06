@@ -1,6 +1,7 @@
 package jmart.goldenSample.dataset;
 
 import jmart.goldenSample.dataset.Shipment.MultiDuration;
+import jmart.goldenSample.dbjson.Serializable;
 
 public class Product extends Serializable
 {

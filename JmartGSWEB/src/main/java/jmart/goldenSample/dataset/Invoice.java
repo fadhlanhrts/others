@@ -1,5 +1,7 @@
 package jmart.goldenSample.dataset;
 
+import jmart.goldenSample.dbjson.Serializable;
+
 public abstract class Invoice extends Serializable
 {
     public enum Status { WAITING_CONFIRMATION, CANCELLED, ON_PROGRESS, ON_DELIVERY, COMPLAINT, FINISHED, FAILED }
