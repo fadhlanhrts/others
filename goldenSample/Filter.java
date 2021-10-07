@@ -19,7 +19,7 @@ public class Filter {
         for (int i = 0; i < list.size(); ++i) {
             final ProductRating e = list.get(i);
             if (less && e.getAverage() < value || !less && e.getAverage() >= value)
-                list.remove(i);
+                list.remove(i--);
         }
     }
 }
