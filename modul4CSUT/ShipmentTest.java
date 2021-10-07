@@ -51,6 +51,9 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
     protected void scenario() {
         cal.add(Calendar.DATE, 1);
         assumeModifier(ReflectorModifier.PUBLIC, getEstimatedArrival);
+        assumeModifier(ReflectorModifier.PUBLIC, ESTIMATION_FORMAT);
+        assumeModifier(ReflectorModifier.STATIC, ESTIMATION_FORMAT);
+        assumeModifier(ReflectorModifier.FINAL, ESTIMATION_FORMAT);
         assumeType(SimpleDateFormat.class, ESTIMATION_FORMAT);
         assumeReturnType(String.class, getEstimatedArrival);
 
@@ -61,7 +64,16 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
 
         // just in case if not static
         Object temp = null;
-        try { temp = ESTIMATION_FORMAT.get(Duration.getBypassInstantiation()); }
+        String fields[] = {"INSTANT", "SAME_DAY", "REGULER", "NEXT_DAY", "KARGO" };
+        try {
+        	Object durationInstance = null;
+        	for (String s : fields)
+        	{
+        		try { durationInstance = Duration.getDeclaredField(s).get(null); break; }
+        		catch (Throwable ignored) {}
+        	}
+        	temp = ESTIMATION_FORMAT.get(durationInstance);
+        }
         catch (Throwable ignored) {}
 
         final Object estformatObj = temp;
@@ -81,8 +93,7 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
         // <nama field, estimasi hari dari sekarang>
         BiConsumer<String, Integer> assumeForwardEstimation = (f, d) -> {
             assumeTrue(f + " should estimate " + d + " days from now", () -> {
-                Field field = Helper.getDeclaredField(Duration, f);
-                Object obj = field.get(null);
+                Object obj = Helper.getDeclaredField(Duration, f).get(null);
                 Date currentDate = new Date();
 
                 Calendar cal = Calendar.getInstance();
@@ -90,7 +101,7 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
                 cal.add(Calendar.DATE, d);
 
                 String ret1 = (String) getEstimatedArrival.invoke(obj, currentDate);
-                String ret2 = (String) format.invoke(ESTIMATION_FORMAT.get(estformatObj), cal.getTime());
+                String ret2 = (String) format.invoke(estformatObj, cal.getTime());
                 return ret1.equals(ret2);
             });
         };
