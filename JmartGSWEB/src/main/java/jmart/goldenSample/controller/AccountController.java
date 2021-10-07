@@ -32,10 +32,15 @@ class AccountController implements BasicGetController<Account>
         @RequestParam String password
     )
     {
-    	table.list.add(new Account(name, email, password));
-        try { table.write(); }
+    	boolean success = false;
+        try
+        { 
+        	table.list.add(new Account(name, email, password));
+        	table.write();
+        	success = true;
+        }
         catch (Throwable throwable) { throwable.printStackTrace(); }
-    	return true;
+    	return success;
     }
     
     @RequestMapping(value="/delete", method=RequestMethod.DELETE)
