@@ -11,7 +11,42 @@ public class Helper
     @FunctionalInterface
     public interface Noreturn { void run() throws Throwable; }
 
+    @FunctionalInterface
+    public interface Predicate<T> { boolean predicate(T arg); }
+
     public static boolean makeAccessible = false;
+
+    public static <T> boolean arrayContain(T[] arr, T value)
+    {
+        for (T i : arr)
+            if (i.equals(value))
+                return true;
+        return false;
+    }
+
+    public static <T> boolean arrayContain(T[] arr, Predicate<T> pred)
+    {
+        for (T i : arr)
+            if (pred.predicate(i))
+                return true;
+        return false;
+    }
+
+    public static <T> boolean arrayContain(Iterable<T> arr, T value)
+    {
+        for (T i : arr)
+            if (i.equals(value))
+                return true;
+        return false;
+    }
+
+    public static <T> boolean arrayContain(Iterable<T> arr, Predicate<T> pred)
+    {
+        for (T i : arr)
+            if (pred.predicate(i))
+                return true;
+        return false;
+    }
 
     public static Throwable suppress(Noreturn runnable)
     {

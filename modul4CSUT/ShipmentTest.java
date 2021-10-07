@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Date;
 import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -19,7 +20,7 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
     ClassR Duration, MultiDuration;
     Constructor<?> ctor;
     Field address, shipmentCost, duration, receipt, ESTIMATION_FORMAT;
-    Method getEstimatedArrival;
+    Method getEstimatedArrival, format;
     Calendar cal = Calendar.getInstance();
     // SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("E MMMM dd yyyy");
 
@@ -29,7 +30,8 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
     }
 
     @Override
-    public void obtainPackage(String s) {
+    public void obtainPackage(String s)
+    {
         Helper.makeAccessible = true;
         Shipment = new ClassR(s, "Shipment");
         Duration = new ClassR(s, "Shipment$Duration");
@@ -42,7 +44,7 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
         receipt = Helper.getDeclaredField(Shipment, "receipt");
         getEstimatedArrival = Helper.getDeclaredMethod(Duration, "getEstimatedArrival", Date.class);
         ESTIMATION_FORMAT = Helper.getDeclaredField(Duration, "ESTIMATION_FORMAT");
-
+        format = new ClassR("java.text.SimpleDateFormat").getMethod("format", Date.class);
     }
 
     @Override
@@ -75,6 +77,29 @@ public class ShipmentTest extends ExtendedRUT implements MonoPackageTester<Shipm
         assumeContains.accept("MMMM");
         assumeContains.accept("dd");
         assumeContains.accept("yyyy");
+        
+        // <nama field, estimasi hari dari sekarang>
+        BiConsumer<String, Integer> assumeForwardEstimation = (f, d) -> {
+            assumeTrue(f + " should estimate " + d + " days from now", () -> {
+                Field field = Helper.getDeclaredField(Duration, f);
+                Object obj = field.get(null);
+                Date currentDate = new Date();
+
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(currentDate);
+                cal.add(Calendar.DATE, d);
+
+                String ret1 = (String) getEstimatedArrival.invoke(obj, currentDate);
+                String ret2 = (String) format.invoke(ESTIMATION_FORMAT.get(estformatObj), cal.getTime());
+                return ret1.equals(ret2);
+            });
+        };
+
+        assumeForwardEstimation.accept("INSTANT", 0);
+        assumeForwardEstimation.accept("SAME_DAY", 0);
+        assumeForwardEstimation.accept("NEXT_DAY", 1);
+        assumeForwardEstimation.accept("REGULER", 2);
+        assumeForwardEstimation.accept("KARGO", 5);
     }
 
 }

@@ -5,22 +5,20 @@ import com.Reflector.MonoPackageTester;
 import com.Reflector.ReflectorModifier;
 import unithelper.ExtendedRUT;
 import unithelper.Helper;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.util.Date;
 
-public class InvoiceTest extends ExtendedRUT implements MonoPackageTester<InvoiceTest> {
+public class InvoiceTest extends ExtendedRUT implements MonoPackageTester<InvoiceTest>
+{
     ClassR Invoice;
-    Constructor<?> ctor;
     Field date;
 
     @Override
-    public InvoiceTest newInstance() {
-        return new InvoiceTest();
-    }
+    public InvoiceTest newInstance() { return new InvoiceTest(); }
 
     @Override
-    public void obtainPackage(String s) {
+    public void obtainPackage(String s)
+    {
         Helper.makeAccessible = true;
         Invoice = new ClassR(s, "Invoice");
         date = Helper.getDeclaredField(Invoice, "date");
