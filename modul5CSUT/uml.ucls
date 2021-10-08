@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="false" 
-  associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.2.4" icons="false" always-add-relationships="false" generalizations="true" 
+  realizations="false" associations="false" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="goldenSample.Algorithm" project="Jmart" file="/Jmart/goldenSample/Algorithm.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="116" y="127"/>    
+    <position height="-1" width="-1" x="111" y="109"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="false" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="goldenSample.Recognizable" project="Jmart" 
     file="/Jmart/goldenSample/Recognizable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="341" y="1"/>    
+    <position height="-1" width="-1" x="321" y="4"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="false" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="goldenSample.Predicate" project="Jmart" 
     file="/Jmart/goldenSample/Predicate.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="318" y="137"/>    
+    <position height="-1" width="-1" x="300" y="125"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="false" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <class id="4" language="java" name="goldenSample.Pair" project="Jmart" file="/Jmart/goldenSample/Pair.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="298" y="248"/>    
+    <position height="-1" width="-1" x="284" y="226"/>    
     <display autosize="true" stereotype="true" package="false" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="false" protected="true" private="true" static="true"/>      
