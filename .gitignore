@@ -7,3 +7,5 @@
 GitBatchFetcher/*
 
 TestedPackages.txt
+out/*
+.vscode/*
