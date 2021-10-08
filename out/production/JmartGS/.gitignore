@@ -1,0 +1,9 @@
+*.class
+*.ctxt
+*.iml
+
+.metadata/*
+.idea/*
+GitBatchFetcher/*
+
+TestedPackages.txt

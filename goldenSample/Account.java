@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Account extends Recognizable implements FileParser {
-    public static final String REGEX_EMAIL = "(?!.\\.{2,})(?!\\.)[0-9A-z.&~]+@(?!-)[0-9A-z&*~.-]+";
-    public static final String REGEX_PASSWORD = "(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$";
+    public static final String REGEX_EMAIL = "(?!.\\.{2,})(?!\\.)[0-9A-z.&~*]+@\\w+([.-]?\\w+)+$";
+    public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d][^-\\s]{7,}$";
     public String name;
     public String email;
     public String password;

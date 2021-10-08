@@ -1,11 +1,9 @@
 package modul4PTUT;
 
+import com.NetlabUT.Executable;
 import com.Reflector.ClassR;
 import com.Reflector.MonoPackageTester;
 import com.Reflector.ReflectorModifier;
-import com.Reflector.ReflectorUnitTest;
-import com.NetlabUT.*;
-
 import unithelper.ExtendedRUT;
 import unithelper.Helper;
 
@@ -13,7 +11,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 import java.util.regex.Pattern;
 
 public class AccountTest extends ExtendedRUT implements MonoPackageTester<AccountTest> {
@@ -61,6 +58,36 @@ public class AccountTest extends ExtendedRUT implements MonoPackageTester<Accoun
         };
         
         assumeRegexEmail.accept(true, "jono.sukandar@ui.ac.id");
+        assumeRegexEmail.accept(true, "jonosukandar123@gmail.com");
+        assumeRegexEmail.accept(true, "jono.sukandar.123@ui.ac.id");
+        assumeRegexEmail.accept(true, "jono.sukandar@telkom.univ.com");
+        assumeRegexEmail.accept(true, "philjackson@ui.ac.id");
+        assumeRegexEmail.accept(true, "jono.&~sukandar@ui.ac.id");
+        assumeRegexEmail.accept(true, "jono.*sukandar@ui.ac.id");
+        assumeRegexEmail.accept(true, "jono.&sukandar@ui.ac.id");
+        assumeRegexEmail.accept(true, "jono&sukandar@ui.ac.id");
+        assumeRegexEmail.accept(true, "jono~sukandar@ui.ac.id");
+        assumeRegexEmail.accept(false, "jonosukandarui.ac.id");
+        assumeRegexEmail.accept(false, "jonosukandarui..ac.id");
+        assumeRegexEmail.accept(false, "jonosukandar@ui..ac.id");
+        assumeRegexEmail.accept(false, "jono-sukandar@ui.ac.id");
+        assumeRegexEmail.accept(false, "jono..sukandarui.ac.id");
+        assumeRegexEmail.accept(false, ".jonosukandar@ui.ac.id");
+        assumeRegexEmail.accept(false, "jonosukandar@.ui.ac.id");
+        assumeRegexEmail.accept(false, "jonosukandar@ui.ac.id.");
+        assumeRegexEmail.accept(false, "jonosukandar@ui-.ac.id");
+        assumeRegexEmail.accept(false, "jonosukandar@ui&ac~id");
+
+        assumeRegexPassword.accept(true, "Mantab123");
+        assumeRegexPassword.accept(true, "Mantab$123");
+        assumeRegexPassword.accept(true, "M4N%ab123");
+        assumeRegexPassword.accept(true, "Ma1manma");
+        assumeRegexPassword.accept(true, "M@nt@b123");
+        assumeRegexPassword.accept(false, "mantab123");
+        assumeRegexPassword.accept(false, "MANTAB123");
+        assumeRegexPassword.accept(false, "12345678");
+        assumeRegexPassword.accept(false, "Ma123");
+        assumeRegexPassword.accept(false, "Man 12345");
     }
 
     @Override
