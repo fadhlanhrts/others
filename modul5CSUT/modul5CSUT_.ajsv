@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--AgileJ Ltd. (http://www.agilej.com)--><ajsv>
+    <diagram creationDate="2021-Oct-08 22:05" licenseGrade="single" licenseeName="AgileJ community member" licenseeOrganization="agilej-community" populationMethod="manual" version="1.9.2.v20190518-1152">
+        <filterScript>
+
+hide call lines
+hide dependency lines
+
+</filterScript>
+        <class className="goldenSample.Algorithm" modelMemberId="goldenSample.Algorithm" project="Jmart" xLocation="100" yLocation="150"/>
+        <class className="goldenSample.Recognizable" modelMemberId="goldenSample.Recognizable" project="Jmart" xLocation="626" yLocation="152"/>
+        <class className="goldenSample.Pair" modelMemberId="goldenSample.Pair" project="Jmart" xLocation="627" yLocation="426"/>
+        <class className="goldenSample.Predicate" modelMemberId="goldenSample.Predicate" project="Jmart" xLocation="629" yLocation="622"/>
+    </diagram>
+</ajsv>

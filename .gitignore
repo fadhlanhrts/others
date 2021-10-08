@@ -5,6 +5,7 @@
 .metadata/*
 .idea/*
 GitBatchFetcher/*
+RiwayatPraktikan/*
 
 TestedPackages.txt
 out/*

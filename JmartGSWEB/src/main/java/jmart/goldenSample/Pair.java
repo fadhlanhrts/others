@@ -2,9 +2,8 @@ package jmart.goldenSample;
 
 public class Pair<T, U>
 {
-    T first;
-    U second;
-
+    public T first;
+    public U second;
     public Pair() {}
     public Pair(T first, U second)
     {
