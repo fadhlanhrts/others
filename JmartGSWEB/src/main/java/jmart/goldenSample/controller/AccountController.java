@@ -6,11 +6,9 @@ import java.nio.file.FileAlreadyExistsException;
 
 import org.springframework.web.bind.annotation.*;
 
-import jmart.goldenSample.dataset.Account;
-import jmart.goldenSample.dataset.Payment;
-import jmart.goldenSample.dbjson.DBContainer;
-import jmart.goldenSample.dbjson.JSONTable;
-import jmart.goldenSample.dbjson.Serializable;
+import jmart.goldenSample.dataset.*;
+import jmart.goldenSample.dataset.Invoice.Status;
+import jmart.goldenSample.dbjson.*;
 
 @RestController
 @RequestMapping("/account")
@@ -19,7 +17,7 @@ class AccountController implements BasicGetController<Account>
 	private final JSONTable<Account> table;
 	
 	public AccountController() throws FileAlreadyExistsException, ClassNotFoundException 
-	{ table = DBContainer.fetch(Account.class, "account.json"); }
+	{ table = DBContainer.fetch(Account.class, "db/account.json"); }
 	
     @Override
     public JSONTable<Account> getJSONTable() { return table; }
@@ -35,29 +33,11 @@ class AccountController implements BasicGetController<Account>
     	boolean success = false;
         try
         { 
-        	table.list.add(new Account(name, email, password));
+        	table.add(new Account(name, email, password, 0));
         	table.write();
         	success = true;
         }
         catch (Throwable throwable) { throwable.printStackTrace(); }
     	return success;
-    }
-    
-    @RequestMapping(value="/delete", method=RequestMethod.DELETE)
-    boolean delete
-    (
-        @RequestParam int id,
-        @RequestParam String password
-    )
-    {
-        final int idx = Algorithm.<Account>findIndex(table.list, (e) -> e.id == id);
-        if (idx == -1) return false;
-        final Account object = table.list.get(idx);
-        if (object.password.equals(password))
-        {
-        	table.list.remove(idx);
-        	return true;
-        }
-        return false;
     }
 }

@@ -20,8 +20,9 @@ public class Account extends Serializable
     public String name;
     public String email;
     public String password;
+    public double balance;
 
-    public Account(String name, String email, String password) throws Throwable, NoSuchAlgorithmException
+    public Account(String name, String email, String password, double balance) throws Throwable, NoSuchAlgorithmException
     {
     	// rules
         if (!EMAIL_PATTERN.matcher(email).matches())
@@ -35,6 +36,7 @@ public class Account extends Serializable
     	this.password = bytesToHex(hash);
     	this.name     = name;
     	this.email    = email;
+    	this.balance  = balance;
     }
     
     public static String bytesToHex(byte[] bytes)

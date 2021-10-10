@@ -2,30 +2,29 @@ package jmart.goldenSample.dbjson;
 
 import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Vector;
+
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 
-public class JSONTable<T>
+public class JSONTable<T> extends Vector<T>
 {
     private static final Gson gson = new Gson();
 
     public final String filepath;
-    public final ArrayList<T> list;
     
     @SuppressWarnings("unchecked")
     public JSONTable(Class<T> clazz, String filepath) throws ClassNotFoundException, FileAlreadyExistsException
     {
         this.filepath = filepath;
-        this.list = new ArrayList<T>();
         boolean fileNotExists = true;
         try
         {
             Class<T[]> arrayType = (Class<T[]>) Class.forName("[L" + clazz.getName() + ";");
-            T[] loaded = load(arrayType, filepath);
+            T[] loaded = read(arrayType, filepath);
             if (loaded != null)
-                Collections.addAll(list, loaded);
+                Collections.addAll(this, loaded);
         }
         catch (FileNotFoundException e)
         {
@@ -43,11 +42,11 @@ public class JSONTable<T>
     public void write() throws IOException
     {
         final FileWriter writer = new FileWriter(filepath);
-        writer.write(gson.toJson(list));
+        writer.write(gson.toJson(this));
         writer.close();
     }
 
-    private static <T> T load(Class<T> clazz, String filepath) throws FileNotFoundException
+    public static <T> T read(Class<T> clazz, String filepath) throws FileNotFoundException
     {
         final JsonReader reader = new JsonReader(new FileReader(filepath));
         return gson.fromJson(reader, clazz);

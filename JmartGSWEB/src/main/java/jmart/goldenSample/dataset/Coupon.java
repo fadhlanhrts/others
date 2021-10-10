@@ -29,17 +29,17 @@ public class Coupon extends Serializable
     
     public boolean isUsed() { return used; }
 
-    public boolean canApply(PriceTag priceTag)
+    public boolean canApply(Product product)
     {
-        if (used || priceTag.getAdjustedPrice() < minimum)
+        if (used || product.getAdjustedPrice() < minimum)
             return false;
         return true;
     }
 
-    public double apply(PriceTag priceTag)
+    public double apply(Product product)
     {
         used = true;
-        double adjustedPrice = priceTag.getAdjustedPrice();
+        double adjustedPrice = product.getAdjustedPrice();
         switch (type)
         {
             case REBATE:

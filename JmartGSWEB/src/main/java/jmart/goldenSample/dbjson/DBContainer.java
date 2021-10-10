@@ -16,8 +16,9 @@ public class DBContainer
 		final JSONTable<T> table = new JSONTable<T>(clazz, filepath);
 		if (Serializable.class.isAssignableFrom(clazz))
 		{
-			final Serializable serial = Algorithm.max((ArrayList<? extends Serializable>) table.list);
-	        Serializable.setClosingId((Class<? extends Serializable>) clazz, serial.id);
+			final Serializable serial = Algorithm.max((JSONTable<? extends Serializable>) table);
+			if (serial != null)
+				Serializable.setClosingId((Class<? extends Serializable>) clazz, serial.id);
 		}
         MAP_TABLE.put(clazz, table);
         return table;

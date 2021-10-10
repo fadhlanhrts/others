@@ -28,15 +28,20 @@ public class Shipment
     }
 
     public String address;
-    public int shipmentCost;
+    public int cost;
     public byte duration;
     public String receipt;
 
-    public Shipment(String address, int shipmentCost, Duration duration, String receipt)
+    public Shipment(String address, Duration duration, String receipt)
     {
         this.address = address;
-        this.shipmentCost = shipmentCost;
         this.duration = duration.bit;
+        this.receipt = receipt;
+    }
+    public Shipment(String address, byte duration, String receipt)
+    {
+        this.address = address;
+        this.duration = duration;
         this.receipt = receipt;
     }
 }
