@@ -11,3 +11,4 @@ GitBatchFetcher/*
 TestedPackages.txt
 /.gradle/
 /build/
+db

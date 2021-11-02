@@ -16,13 +16,11 @@ import jmart.goldenSample.dbjson.*;
 @RequestMapping("/store")
 class StoreController implements BasicGetController<Store>
 {
-	private JSONTable<Store> table;
-	
-	public StoreController() throws FileAlreadyExistsException, ClassNotFoundException 
-	{ table = DBContainer.fetch(Store.class, "db/store.json"); }
+	@JSONDBContainer(value=Store.class, filepath="db/store.json")
+	public static JSONTable<Store> storeTable;
 	
 	@Override
-	public JSONTable<Store> getJSONTable() { return table; }
+	public JSONTable<Store> getJSONTable() { return storeTable; }
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	boolean create
@@ -36,8 +34,7 @@ class StoreController implements BasicGetController<Store>
 		try
 		{
 			final Store store = new Store(name, address, phoneNumber, 0);
-			table.add(store);
-			table.write();
+			storeTable.add(store);
 			success = true;
 		}
 		catch (Throwable t) { t.printStackTrace(); } 

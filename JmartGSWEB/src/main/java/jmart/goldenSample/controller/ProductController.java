@@ -17,18 +17,16 @@ import jmart.goldenSample.dbjson.*;
 @RequestMapping("/product")
 class ProductController implements BasicGetController<Product>
 {
-	private JSONTable<Product> table;
-	
-	public ProductController() throws FileAlreadyExistsException, ClassNotFoundException 
-	{ table = DBContainer.fetch(Product.class, "db/product.json"); }
+	@JSONDBContainer(value=Product.class, filepath="db/product.json")
+	public static JSONTable<Product> productTable;
 	
 	@Override
-	public JSONTable<Product> getJSONTable() { return table; }
+	public JSONTable<Product> getJSONTable() { return productTable; }
 	
 	@RequestMapping(value="/store/{id}", method=RequestMethod.GET)
     List<Product> getProductByStore(@PathVariable int id)
     {
-    	return Algorithm.<Product>collect(table, (e) -> e.storeId == id);
+    	return Algorithm.<Product>collect(ProductController.productTable, (e) -> e.storeId == id);
     }
 	
     @RequestMapping(value="/create", method=RequestMethod.POST)
@@ -47,8 +45,7 @@ class ProductController implements BasicGetController<Product>
         try
         {
         	final Product product = new Product(storeId, name, weight, conditionUsed, discount, price, category, null);
-        	table.add(product);
-        	table.write();
+        	productTable.add(product);
         	success = true;
         }
         catch (Throwable throwable) { throwable.printStackTrace(); }

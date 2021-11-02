@@ -14,13 +14,11 @@ import jmart.goldenSample.dbjson.*;
 @RequestMapping("/account")
 class AccountController implements BasicGetController<Account>
 {
-	private final JSONTable<Account> table;
-	
-	public AccountController() throws FileAlreadyExistsException, ClassNotFoundException 
-	{ table = DBContainer.fetch(Account.class, "db/account.json"); }
+	@JSONDBContainer(value=Account.class, filepath="db/account.json")
+	public static JSONTable<Account> accountTable;
 	
     @Override
-    public JSONTable<Account> getJSONTable() { return table; }
+    public JSONTable<Account> getJSONTable() { return accountTable; }
 
     @RequestMapping(value="/register", method=RequestMethod.POST)
     boolean register
@@ -32,9 +30,8 @@ class AccountController implements BasicGetController<Account>
     {
     	boolean success = false;
         try
-        { 
-        	table.add(new Account(name, email, password, 0));
-        	table.write();
+        {
+        	accountTable.add(new Account(name, email, password, 0));
         	success = true;
         }
         catch (Throwable throwable) { throwable.printStackTrace(); }

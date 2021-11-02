@@ -1,11 +1,11 @@
-package jmart.goldenSample;
-
-import java.util.ArrayList;
+package jmart.goldenSample.controller;
 
 import jmart.goldenSample.dataset.Invoice.Record;
 import jmart.goldenSample.dataset.Invoice.Status;
 import jmart.goldenSample.dataset.*;
 import jmart.goldenSample.dbjson.*;
+import jmart.goldenSample.Algorithm;
+import jmart.goldenSample.controller.*;
 
 public class PaymentInstrumentator implements Runnable
 {
@@ -17,10 +17,10 @@ public class PaymentInstrumentator implements Runnable
 	@Override
 	public void run()
 	{
-		final JSONTable<Payment> tablePayment  = DBContainer.getTable(Payment.class);
-		final JSONTable<Product> tableProduct  = DBContainer.getTable(Product.class);
-		final JSONTable<Store>   tableStore    = DBContainer.getTable(Store.class);
-		final JSONTable<Account> tableAccount  = DBContainer.getTable(Account.class);
+		final JSONTable<Payment> tablePayment  = PaymentController.paymentTable;
+		final JSONTable<Product> tableProduct  = ProductController.productTable;
+		final JSONTable<Store>   tableStore    = StoreController.storeTable;
+		final JSONTable<Account> tableAccount  = AccountController.accountTable;
 		
 		while (true)
 		{

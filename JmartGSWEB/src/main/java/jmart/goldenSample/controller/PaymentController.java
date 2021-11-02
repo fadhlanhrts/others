@@ -18,13 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/payment")
 class PaymentController implements BasicGetController<Payment>, InvoiceUpdateListener
 {
-	private final JSONTable<Payment> table;
-	
-	public PaymentController() throws FileAlreadyExistsException, ClassNotFoundException
-	{ table = DBContainer.fetch(Payment.class, "db/payment.json"); }
-	
-    @Override
-    public JSONTable<Payment> getJSONTable() { return table; }
+	@JSONDBContainer(value=Payment.class, filepath="db/payment.json")
+	public static JSONTable<Payment> paymentTable;
+    
+	@Override
+    public JSONTable<Payment> getJSONTable() { return paymentTable; }
 
     @RequestMapping(value="/create", method=RequestMethod.POST)
     boolean create
@@ -40,11 +38,11 @@ class PaymentController implements BasicGetController<Payment>, InvoiceUpdateLis
         try
         {
         	final Payment payment = new Payment(buyerId, productId, productCount, new Shipment(shipmentAddress, shipmentDuration, null));
-        	final Product product = Algorithm.<Product>find(DBContainer.getTable(Product.class), (e) -> e.id == payment.productId);
-        	final Store store     = Algorithm.<Store>find(DBContainer.getTable(Store.class), (e) -> e.id == product.storeId);
+        	final Product product = Algorithm.<Product>find(ProductController.productTable, (e) -> e.id == payment.productId);
+        	final Store store     = Algorithm.<Store>find(StoreController.storeTable, (e) -> e.id == product.storeId);
 			payment.setInvoiceUpdateListener(this);
         	payment.updateRecord(Status.WAITING_CONFIRMATION, String.format("Waiting for Seller: %s's confirmation", store.name));
-        	table.add(payment);
+        	paymentTable.add(payment);
         	success = true;
         }
         catch (Throwable throwable) { throwable.printStackTrace(); }
@@ -54,7 +52,7 @@ class PaymentController implements BasicGetController<Payment>, InvoiceUpdateLis
     @RequestMapping(value="/accept/{id}", method=RequestMethod.POST)
     boolean accept(@PathVariable int id)
     {
-        final Payment payment = Algorithm.<Payment>find(table, (e) -> e.id == id);
+        final Payment payment = Algorithm.<Payment>find(paymentTable, (e) -> e.id == id);
         if (payment != null && payment.getCurrentRecord().status == Status.WAITING_CONFIRMATION)
         {
             payment.updateRecord(Status.ON_PROGRESS, "");
@@ -70,7 +68,7 @@ class PaymentController implements BasicGetController<Payment>, InvoiceUpdateLis
         @RequestParam String receipt
 	)
     {
-        final Payment payment = Algorithm.<Payment>find(table, (e) -> e.id == id);
+        final Payment payment = Algorithm.<Payment>find(paymentTable, (e) -> e.id == id);
         if (payment != null && payment.getCurrentRecord().status == Status.ON_PROGRESS)
         {
         	payment.shipment.receipt = receipt;
@@ -83,7 +81,7 @@ class PaymentController implements BasicGetController<Payment>, InvoiceUpdateLis
     @RequestMapping(value="/cancel/{id}", method=RequestMethod.POST)
     boolean cancel(@PathVariable int id)
     {
-        final Payment payment = Algorithm.<Payment>find(table, (e) -> e.id == id);
+        final Payment payment = Algorithm.<Payment>find(paymentTable, (e) -> e.id == id);
         if (payment != null && payment.getCurrentRecord().status == Status.WAITING_CONFIRMATION)
         {
             payment.updateRecord(Status.CANCELLED, "");
@@ -95,20 +93,20 @@ class PaymentController implements BasicGetController<Payment>, InvoiceUpdateLis
     @Override
 	public void onTransactionInit(Invoice invoice)
 	{
-		final Account account = Algorithm.<Account>find(DBContainer.getTable(Account.class), (e) -> e.id == invoice.buyerId);
-		final Product product = Algorithm.<Product>find(DBContainer.getTable(Product.class), (e) -> e.id == invoice.productId);
+		final Account account = Algorithm.<Account>find(AccountController.accountTable, (e) -> e.id == invoice.buyerId);
+		final Product product = Algorithm.<Product>find(ProductController.productTable, (e) -> e.id == invoice.productId);
 		account.balance -= product.getAdjustedPrice();
 	}
     
     @Override
 	public void onTransactionDismissed(Invoice invoice)
 	{
-		final Product product = Algorithm.<Product>find(DBContainer.getTable(Product.class), (e) -> e.id == invoice.productId);
-		final Store store     = Algorithm.<Store>find(DBContainer.getTable(Store.class), (e) -> e.id == product.storeId);
+		final Product product = Algorithm.<Product>find(ProductController.productTable, (e) -> e.id == invoice.productId);
+		final Store store     = Algorithm.<Store>find(StoreController.storeTable, (e) -> e.id == product.storeId);
 		final Invoice.Status currentStatus = invoice.getCurrentRecord().status;
 		if (currentStatus == Status.CANCELLED || currentStatus == Status.FAILED)
 		{
-			final Account account = Algorithm.<Account>find(DBContainer.getTable(Account.class), (e) -> e.id == invoice.buyerId);
+			final Account account = Algorithm.<Account>find(AccountController.accountTable, (e) -> e.id == invoice.buyerId);
 			account.balance += product.getAdjustedPrice();
 		}
 		else if (currentStatus == Status.FINISHED)
