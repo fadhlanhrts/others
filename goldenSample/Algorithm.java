@@ -3,8 +3,6 @@ package goldenSample;
 import java.lang.Iterable;
 import java.util.*;
 
-import jmart.goldenSample.Predicate;
-
 /** provides basic algorithm
  * @author Ramadhan Kalih Sewu
  */
