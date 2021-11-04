@@ -38,7 +38,7 @@ public class RecognizableTest
 		{
 			String comparableTypeName = suppressNull(() -> String.format("%s<%s>", Comparable.class.getName(), Recognizable.getName()));
 			assumeEquals(Comparable.class, () -> Recognizable.getInterfaces()[0]);
-			assumeEquals(comparableTypeName, Recognizable.getGenericInterfaces()[0].getTypeName());
+			assumeEquals(comparableTypeName, () -> Recognizable.getGenericInterfaces()[0].getTypeName());
 		}
 		// Comparable compareTo
 		{	
