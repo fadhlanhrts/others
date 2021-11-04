@@ -1,9 +1,9 @@
 package modul5PTUT;
 
-import static com.NetlabUT.UnitTest.*;
+import static com.NetlabUT.Assumptions.*;
 import static helper.Suppress.*;
 
-import com.NetlabUT.ClassR;
+import com.NetlabUT.Instantiator;
 import com.NetlabUT.annotations.*;
 
 import static helper.Stringify.*;
@@ -62,7 +62,7 @@ public class AlgorithmTest
 		
 		Child[] childs = childIterable.toArray(new Child[0]);
 		
-		Object instance = suppressNull(() -> ClassR.getBypassInstantiation(Algorithm));
+		Object instance = suppressNull(() -> Instantiator.getBypassInstantiation(Algorithm));
 		
 		Integer i76 = 76;
 		Integer[] arr = { 1,2,i76,3,i76,4,5,6,7,8,9,10 };

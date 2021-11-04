@@ -1,11 +1,12 @@
 package modul5CSUT;
 
-import java.lang.reflect.*;
-
-import com.NetlabUT.ClassR;
+import static com.NetlabUT.Assumptions.*;
+import com.NetlabUT.Instantiator;
 import com.NetlabUT.annotations.*;
-import static com.NetlabUT.UnitTest.*;
+
 import static helper.Suppress.*;
+
+import java.lang.reflect.*;
 
 @NetlabReflectTest(makeAccessible=true)
 public class RecognizableTest
@@ -41,8 +42,8 @@ public class RecognizableTest
 		}
 		// Comparable compareTo
 		{	
-			Object o1 = suppressNull(() -> ClassR.getBypassInstantiation(Recognizable));
-			Object o2 = suppressNull(() -> ClassR.getBypassInstantiation(Recognizable));
+			Object o1 = suppressNull(() -> Instantiator.getBypassInstantiation(Recognizable));
+			Object o2 = suppressNull(() -> Instantiator.getBypassInstantiation(Recognizable));
 			
 			suppressNull(() -> id.set(o1, 1));
 			suppressNull(() -> id.set(o2, 2));

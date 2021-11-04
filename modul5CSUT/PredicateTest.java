@@ -1,7 +1,7 @@
 package modul5CSUT;
 
 import com.NetlabUT.annotations.*;
-import static com.NetlabUT.UnitTest.*;
+import static com.NetlabUT.Assumptions.*;
 
 import java.lang.reflect.*;
 

@@ -1,9 +1,9 @@
 package modul5CSUT;
 
-import static com.NetlabUT.UnitTest.*;
+import static com.NetlabUT.Assumptions.*;
 import static helper.Suppress.*;
 
-import com.NetlabUT.ClassR;
+import com.NetlabUT.Instantiator;
 import com.NetlabUT.annotations.*;
 
 import java.lang.reflect.Constructor;
@@ -26,7 +26,7 @@ public class AlgorithmTest
 	@Test
 	void test()
 	{
-		Object instance = suppressNull(() -> ClassR.getBypassInstantiation(Algorithm));
+		Object instance = suppressNull(() -> Instantiator.getBypassInstantiation(Algorithm));
 		
 		Integer[] arrPrimitive = { 1,3,5,5,7,9,11,13,15 };
 		Iterable<Integer> arrIterable = Arrays.asList(arrPrimitive);
