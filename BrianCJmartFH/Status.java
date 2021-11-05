@@ -1,0 +1,6 @@
+package BrianCJmartFH;
+
+public enum Status {
+    WAITING_CONFIRMATION, CANCELLED, ON_PROGRESS, ON_DELIVERY, COMPLAINT,
+    FINISHED, FAILED;
+}
